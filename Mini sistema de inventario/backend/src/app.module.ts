@@ -17,7 +17,7 @@ import { MovementsModule } from './movements/movements.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env', '../.env'],
+      envFilePath: ['.env', '../.env', '../../.env'],
       validationSchema: envValidationSchema,
     }),
     TypeOrmModule.forRootAsync({

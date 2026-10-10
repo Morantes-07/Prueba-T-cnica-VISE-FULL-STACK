@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { DataSource } from 'typeorm';
 
-config({ path: ['.env', '../.env'] });
+config({ path: ['.env', '../.env', '../../.env'] });
 
 export default new DataSource({
   type: 'postgres',
