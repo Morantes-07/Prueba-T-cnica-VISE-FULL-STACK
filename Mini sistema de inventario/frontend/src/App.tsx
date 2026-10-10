@@ -3,6 +3,7 @@ import { ProtectedRoute } from './auth/ProtectedRoute';
 import { Layout } from './components/Layout';
 import { LoginPage } from './pages/LoginPage';
 import { ProductsPage } from './pages/ProductsPage';
+import { ProductFormPage } from './pages/ProductFormPage';
 
 export default function App() {
   return (
@@ -11,6 +12,8 @@ export default function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/new" element={<ProductFormPage />} />
+          <Route path="/products/:id/edit" element={<ProductFormPage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/products" replace />} />
