@@ -46,6 +46,7 @@ coverage
 
 # dotenv environment variable files
 .env
+.env.example
 *.local
 
 # temp directory
