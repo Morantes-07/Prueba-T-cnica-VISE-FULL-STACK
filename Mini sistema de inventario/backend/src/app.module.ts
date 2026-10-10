@@ -9,6 +9,9 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { UsersModule } from './users/users.module';
+import { CategoriesModule } from './categories/categories.module';
+import { ProductsModule } from './products/products.module';
+import { MovementsModule } from './movements/movements.module';
 
 @Module({
   imports: [
@@ -33,6 +36,9 @@ import { UsersModule } from './users/users.module';
     ThrottlerModule.forRoot([{ ttl: 60_000, limit: 100 }]),
     UsersModule,
     AuthModule,
+    CategoriesModule,
+    ProductsModule,
+    MovementsModule
   ],
   controllers: [AppController],
   providers: [
