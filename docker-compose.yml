@@ -65,5 +65,34 @@ services:
       timeout: 5s
       retries: 5
 
+  # --- Parte 2: RPA (perfil 'rpa', no arranca con 'up') ---
+  mock:
+    build:
+      context: "./RPA de consulta de antecedentes"
+    entrypoint: ["python", "mock_service/app.py"]
+    profiles: ["rpa"]
+    expose:
+      - "8000"
+    environment:
+      MOCK_PORT: 8000
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  rpa:
+    build:
+      context: "./RPA de consulta de antecedentes"
+    profiles: ["rpa"]
+    depends_on:
+      mock:
+        condition: service_healthy
+    environment:
+      SERVICE_URL: http://mock:8000
+    volumes:
+      - "./RPA de consulta de antecedentes/data:/data"
+      - "./RPA de consulta de antecedentes/logs:/logs"
+
 volumes:
   pgdata:
